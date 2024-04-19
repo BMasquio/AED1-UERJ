@@ -10,7 +10,6 @@ typedef struct pilha {
 } pilha;
 
 void esvazia(pilha &s){
-	//s é uma variável local
 	s.topo = 0;
 }
 
