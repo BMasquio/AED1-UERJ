@@ -50,7 +50,7 @@ void printTabular(node *p, int n){
     }
 }
 
-void singleRotLeft(node *&p){
+void singleRotRight(node *&p){
 	node *pf = p->left;
 	p->left = pf->right;
 	pf->right = p;
@@ -59,7 +59,7 @@ void singleRotLeft(node *&p){
 	p->bal = 0;
 }
 
-void singleRotRight(node *&p){
+void singleRotLeft(node *&p){
 	node *pf = p->right;
 	p->right = pf->left;
 	pf->left = p;
@@ -68,7 +68,7 @@ void singleRotRight(node *&p){
 	p->bal = 0;
 }
 
-void doubleRotRight(node *&p){
+void doubleRotLeft(node *&p){
 	node *pf = p->right;
 	node *pn = pf->left;
 	pf->left = pn->right;
@@ -87,7 +87,7 @@ void doubleRotRight(node *&p){
 	p->bal = 0;
 }
 
-void doubleRotLeft(node *&p){
+void doubleRotRight(node *&p){
 	node *pf = p->left;
 	node *pn = pf->right;
 	pf->right = pn->left;
