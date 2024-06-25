@@ -124,9 +124,9 @@ void insertAVL(int k, node *&p, bool &h){
 					break;
 				case -1:
 					if(p->left->bal == -1){
-						singleRotLeft(p);
+						singleRotRight(p);
 					}else{
-						doubleRotLeft(p);
+						doubleRotRight(p);
 					}	
 					p->bal = 0;
 					h=false;
@@ -146,9 +146,9 @@ void insertAVL(int k, node *&p, bool &h){
 					break;
 				case 1:
 					if(p->right->bal == 1){
-						singleRotRight(p);
+						singleRotLeft(p);
 					}else{
-						doubleRotRight(p);
+						doubleRotLeft(p);
 					}
 					p->bal = 0; h = false;
 					break;
