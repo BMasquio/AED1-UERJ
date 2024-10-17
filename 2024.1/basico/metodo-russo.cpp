@@ -1,3 +1,8 @@
+/*
+
+Método russo para multiplicação de dois números
+
+*/
 #include <iostream>
 using namespace std;
 

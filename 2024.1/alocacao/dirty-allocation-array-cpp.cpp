@@ -20,9 +20,6 @@ void qualASaida() {
     }  
 
     cout << numberOfNonZeroValues << endl;
-    
-    
-    
 }
 
 
