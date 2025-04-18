@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-int realocacoes = 0;
+int alocacoes = 0;
 int valoresCopiados = 0;
 
 typedef struct arrayDin{
@@ -11,6 +11,7 @@ typedef struct arrayDin{
 
 void inicializa(arrayDin &a){
   a.v = (int *)malloc(1 * sizeof(int));
+  alocacoes++;
   a.cap = 1;
   a.tam = 0;
 }
@@ -21,7 +22,7 @@ bool cheio(arrayDin &a){
 
 void dobra(arrayDin &a){
   int* aux = (int *)malloc((a.cap*2) * sizeof(int));
-  realocacoes++;
+  alocacoes++;
   valoresCopiados+=a.cap;
   for(int i=0;i<a.cap;i++){
     aux[i] = a.v[i];
@@ -49,21 +50,21 @@ void imprime(arrayDin &a){
 
 int main()
 {
-    int n;
-    cin >> n;
-    
-    arrayDin arr;
-    inicializa(arr);
-    
-    for (int i=0; i<n; i++){
-      insere(arr,i);
-      imprime(arr);
-    }
-    
-    cout << "Quantidade de realocações -> " << realocacoes << endl;
-    cout << "Quantidade de valores copiados -> " << valoresCopiados << endl;
-    cout << "Valores copiados/n -> " << (double)valoresCopiados/n << endl;
-    
-    
-    return 0;
+  int n;
+  cin >> n;
+
+  arrayDin arr;
+  inicializa(arr);
+
+  for (int i=0; i<n; i++){
+    insere(arr,i);
+    imprime(arr);
+  }
+
+  cout << "Quantidade de alocações -> " << alocacoes << endl;
+  cout << "Quantidade de valores copiados -> " << valoresCopiados << endl;
+  cout << "Valores copiados/n -> " << (double)valoresCopiados/n << endl;
+
+
+  return 0;
 }

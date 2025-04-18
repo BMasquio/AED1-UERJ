@@ -1,14 +1,25 @@
 def soma(b1, b2):
-  b3 = 1000*[0]
+  b3 = 200*[0]
   #...
-  return 0
+  return b3
+
+def convertStrToBigNumber(s):
+  b=40*[0]
+  for i in range(1,len(s)):
+    b[-i]=int(s[-i])
+  if(s[0]=='-'):
+    b[0]=-1
+  else:
+    b[-i-2]=int(s[0])
+    b[0]=1
+  return b
 
 t = int(input())
 for titeration in range(t):
   arr = input().split()
-  n1 = arr[0]
-  n2 = arr[1]
-  #print(int(n1)+int(n2))
+  n1 = convertStrToBigNumber(arr[0])
+  n2 = convertStrToBigNumber(arr[1])
+  #print(int(arr[0])+int(arr[1]))
   print(soma(n1,n2))
   
   
