@@ -36,25 +36,29 @@ pair<int,int> calculaAlturaENos(no *p){
 	}
 }
 
-void inOrdem(no *p, int &cont, int h, vector<vector<int>> &m){
+void inOrdem(no *p, int &cont, int h, vector<vector<pair<int,int>>> &m){
 	if (p != NULL){
 		inOrdem(p->le,cont,h+1,m);
-		m[h][cont] = p->c;
+		m[h][cont] = make_pair(p->c,p->bal);
 		cont = cont+1;
 		inOrdem(p->ld,cont,h+1,m);
 	}
 }
 
-void printM(vector<std::vector<int>>& grid) {
+void printM(vector<std::vector<pair<int,int>>>& grid) {
     int width = 0;
     for (const auto& row : grid)
-        for (int x : row)
-            width = max(width, (int)to_string(x).size());
+        for (auto x : row)
+            width = max(width, (int)to_string(x.first).size());
     ++width;
     
     for (const auto& row : grid) {
-        for (int x : row)
-            cout << right << setw(width) << x;
+        for (auto x : row){
+            if(x.second == -2)
+              cout << right << setw(width) << "x" << "(x)";
+            else
+              cout << right << setw(width) << x.first << "(" << (x.second == -1 ? "-" : (x.second == 1 ? "+" : "0")) <<  ")";
+        }
         cout << right << setw(width) <<  endl;
     }
 }
@@ -67,11 +71,11 @@ void criaTabularHorizontal(arvore &t){
 	h = pairR.first;
 	n = pairR.second;
 	
-	vector<vector<int>> m;
+	vector<vector<pair<int,int>>> m;
 	m.resize(h);
 	int i;
 	for(i=0;i<h;i++){
-	  m[i].resize(n, 0);
+	  m[i].resize(n, make_pair(0,-2));
 	}
 	
 	int cont = 0;
@@ -111,7 +115,7 @@ void rotDuplDir(no *&p){
   /* 2º passo – rot. simples à direita em p   */
   p->le = v->ld;
   v->ld = p;
-
+  
   /* reajuste dos fatores de balanceamento */
   switch (v->bal){
       case -1:  p->bal =  1;  u->bal = 0;  break;
@@ -205,6 +209,7 @@ bool insereAvl(no *&p, int k){
     }
     return false;
   }
+  return false;
 }
 
 int main()
@@ -226,3 +231,14 @@ int main()
   
   return 0;
 }
+
+/*
+80
+113 66 144 182 195 68 80 55 143 85 63 198 48 36 62 38 198 93 141 187 156 136 1 165 137 188 159 199 53 170 119 111 176 195 44 23 45 129 111 195 35 123 150 183 29 159 71 147 63 185 196 188 3 54 154 151 187 136 3 137 140 196 194 139 123 62 21 48 39 16 135 83 138 35 103 47 94 18 62 117
+
+20
+161 175 182 93 99 128 23 197 22 19 144 40 63 168 65 39 20 47 99 166
+
+13
+21 26 30 9 4 14 28 18 15 10 2 3 7 1
+*/
