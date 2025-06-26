@@ -198,7 +198,7 @@ bool insereAvl(no *&p, int k){
           break;
         case 1:
           if(p->ld->bal == 1){
-						rotSimplEsq(p);
+	    rotSimplEsq(p);
           }
           else{
             rotDuplEsq(p);
